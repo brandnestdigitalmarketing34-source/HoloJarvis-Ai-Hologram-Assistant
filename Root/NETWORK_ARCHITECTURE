@@ -1,0 +1,611 @@
+# 🌐 NETWORK_ARCHITECTURE.md
+
+> **Project:** HoloJARVIS
+>
+> **Version:** 1.0
+>
+> **Document Type:** Network Architecture
+>
+> **Platform:** Raspberry Pi 5
+
+---
+
+# Table of Contents
+
+1. Introduction
+2. Network Overview
+3. Architecture Goals
+4. Network Components
+5. Communication Flow
+6. Local Network Architecture
+7. Remote Access Architecture
+8. Multi-Computer Architecture
+9. Client Applications
+10. Device Registration
+11. Communication Protocols
+12. Data Flow
+13. Security Architecture
+14. Failover & Recovery
+15. Future Expansion
+
+---
+
+# 1. Introduction
+
+HoloJARVIS is designed as a distributed AI system rather than a standalone Raspberry Pi device.
+
+The network architecture enables HoloJARVIS to communicate with multiple computers, mobile devices, web dashboards, and cloud AI services while maintaining secure and reliable connections.
+
+The architecture supports both local (LAN) and remote (Internet) operation.
+
+---
+
+# 2. Network Overview
+
+```
+                    Internet
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+ Desktop Client                  Mobile App
+        │                               │
+        └───────────────┬───────────────┘
+                        │
+                 HTTPS / WebSocket
+                        │
+                HoloJARVIS API
+                        │
+             Raspberry Pi 5 Server
+                        │
+      ┌─────────────────┼─────────────────┐
+      │                 │                 │
+ Office PC         Gaming PC         Laptop
+      │                 │                 │
+      └─────────────────┼─────────────────┘
+                        │
+                 Local Network
+```
+
+---
+
+# 3. Architecture Goals
+
+The networking system is designed to provide:
+
+- Secure communication
+- Low latency
+- Remote accessibility
+- Multi-device support
+- Multi-computer management
+- Modular expansion
+- Real-time synchronization
+- High reliability
+
+---
+
+# 4. Network Components
+
+## Raspberry Pi Server
+
+Acts as the central controller.
+
+Responsibilities:
+
+- API Server
+- AI Processing
+- Device Management
+- Task Scheduling
+- Authentication
+- Command Distribution
+
+---
+
+## Desktop Client
+
+Allows users to:
+
+- Chat with HoloJARVIS
+- Execute commands
+- Monitor connected computers
+- Upload files
+- Receive notifications
+
+---
+
+## Mobile Application
+
+Provides remote access.
+
+Functions:
+
+- Voice Commands
+- Live Status
+- Push Notifications
+- Remote Automation
+- Camera View (future)
+- Device Monitoring
+
+---
+
+## Web Dashboard
+
+Browser-based management interface.
+
+Features:
+
+- AI Chat
+- System Monitoring
+- Computer Management
+- File Browser
+- Plugin Management
+- Settings
+
+---
+
+## Connected Computers
+
+Each connected computer runs a lightweight HoloJARVIS Agent.
+
+The agent is responsible for:
+
+- Receiving commands
+- Executing approved tasks
+- Returning status updates
+- Reporting system information
+
+---
+
+# 5. Communication Flow
+
+```
+User
+
+↓
+
+Desktop / Mobile / Web
+
+↓
+
+HTTPS
+
+↓
+
+FastAPI Server
+
+↓
+
+AI Core
+
+↓
+
+Task Planner
+
+↓
+
+Automation Engine
+
+↓
+
+Target Computer
+
+↓
+
+Result
+
+↓
+
+User
+```
+
+---
+
+# 6. Local Network Architecture
+
+When devices are on the same LAN:
+
+```
+Wi-Fi Router
+
+        │
+
+────────┼───────────────
+
+        │
+
+ Raspberry Pi
+
+        │
+
+────────┼───────────────
+
+ Office PC
+
+ Gaming PC
+
+ Laptop
+
+ NAS
+
+ Server
+```
+
+Advantages:
+
+- Low latency
+- High bandwidth
+- No Internet dependency for local control
+- Faster file transfers
+
+---
+
+# 7. Remote Access Architecture
+
+When the user is outside the local network:
+
+```
+User
+
+↓
+
+Internet
+
+↓
+
+Secure HTTPS
+
+↓
+
+Router
+
+↓
+
+Raspberry Pi
+
+↓
+
+Connected Computers
+```
+
+Example:
+
+Office
+
+↓
+
+Home Raspberry Pi
+
+↓
+
+Home Computer
+
+The user can securely issue commands from anywhere.
+
+---
+
+# 8. Multi-Computer Architecture
+
+HoloJARVIS is designed to coordinate multiple computers simultaneously.
+
+```
+                 HoloJARVIS
+
+                       │
+
+        ┌──────────────┼──────────────┐
+
+   Office PC      Gaming PC      Laptop
+
+        │              │             │
+
+   AI Workstation   Media PC    Raspberry Pi
+
+        │              │             │
+
+     Development Server     NAS
+```
+
+Supported Tasks:
+
+- Launch applications
+- Execute scripts
+- Generate files
+- Monitor system status
+- Transfer files
+- Run automation jobs
+- Coordinate workloads
+
+---
+
+# 9. Client Applications
+
+Supported Clients
+
+Desktop
+
+- Windows
+- Linux
+- macOS (planned)
+
+Mobile
+
+- Android
+- iOS (planned)
+
+Web
+
+- Chrome
+- Firefox
+- Edge
+- Safari
+
+---
+
+# 10. Device Registration
+
+Every connected device has:
+
+- Unique Device ID
+- Device Name
+- Operating System
+- IP Address
+- Last Online Time
+- Status
+- Authentication Token
+
+Example:
+
+```
+Device Name
+
+Office-PC
+
+Device ID
+
+OFFICE-PC-001
+
+Status
+
+Online
+
+Operating System
+
+Windows 11
+
+IP
+
+192.168.1.20
+```
+
+---
+
+# 11. Communication Protocols
+
+Supported Protocols
+
+HTTP
+
+REST API communication.
+
+---
+
+HTTPS
+
+Encrypted remote communication.
+
+---
+
+WebSocket
+
+Real-time events.
+
+Examples:
+
+- AI responses
+- Notifications
+- Live logs
+- System status
+
+---
+
+Future Protocols
+
+- MQTT
+- Bluetooth LE
+- WebRTC
+- SSH Integration
+
+---
+
+# 12. Data Flow
+
+Example:
+
+```
+User
+
+↓
+
+"Open Blender"
+
+↓
+
+API Request
+
+↓
+
+Authentication
+
+↓
+
+AI Task Planner
+
+↓
+
+Automation Service
+
+↓
+
+Office PC Agent
+
+↓
+
+Launch Blender
+
+↓
+
+Return Success
+
+↓
+
+Notify User
+```
+
+---
+
+# 13. Security Architecture
+
+All communication should be encrypted.
+
+Security Features:
+
+- HTTPS
+- API Keys
+- Device Authentication
+- User Authentication
+- Permission Levels
+- Session Management
+- Command Validation
+- Audit Logging
+- Rate Limiting
+
+Critical operations should require user confirmation.
+
+Examples:
+
+- Delete files
+- Shutdown computer
+- Restart system
+- Install software
+- System configuration changes
+
+---
+
+# 14. Failover & Recovery
+
+If a connected computer becomes unavailable:
+
+```
+Device Offline
+
+↓
+
+Heartbeat Timeout
+
+↓
+
+Status Updated
+
+↓
+
+Retry Connection
+
+↓
+
+Notify User
+```
+
+Recovery Features:
+
+- Automatic Reconnect
+- Queue Pending Commands
+- Resume Tasks
+- Error Logging
+
+---
+
+# 15. Future Expansion
+
+Future networking capabilities may include:
+
+## Distributed AI
+
+Multiple Raspberry Pi devices sharing AI workloads.
+
+---
+
+## Multi-HoloJARVIS Network
+
+```
+Home HoloJARVIS
+
+↓
+
+Cloud Coordination
+
+↓
+
+Office HoloJARVIS
+
+↓
+
+Workshop HoloJARVIS
+```
+
+---
+
+## AI Cluster
+
+Dedicated servers for:
+
+- AI inference
+- Code generation
+- Image generation
+- Computer vision
+- Speech processing
+
+---
+
+## Smart Home Integration
+
+Planned support for:
+
+- Smart Lights
+- Smart Plugs
+- Thermostats
+- Cameras
+- Door Locks
+- Environmental Sensors
+
+---
+
+## Edge Computing
+
+Run AI models locally on supported hardware to reduce latency and improve privacy.
+
+---
+
+# Example Network Topology
+
+```
+                     Internet
+                         │
+                  Secure HTTPS
+                         │
+                Home Router / Firewall
+                         │
+                 Raspberry Pi 5 Server
+                         │
+ ┌──────────────┬──────────────┬──────────────┐
+ │              │              │              │
+Office PC   Gaming PC      Laptop      NAS Server
+ │              │              │              │
+ └──────────────┴──────────────┴──────────────┘
+                         │
+                Desktop / Web / Mobile Clients
+```
+
+---
+
+# Network Summary
+
+The HoloJARVIS network architecture is centered around a Raspberry Pi 5 acting as the primary AI server and orchestration node. Desktop, web, and mobile clients communicate securely with the Raspberry Pi through REST APIs and WebSockets. Connected computers run lightweight agents that receive approved commands, execute tasks, and report results. The architecture is designed for scalability, supporting 10 or more managed systems while providing secure remote access, real-time communication, and future expansion into distributed AI, edge computing, and smart home integration.
