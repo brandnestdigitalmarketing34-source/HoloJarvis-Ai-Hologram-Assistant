@@ -1,0 +1,622 @@
+# 🛠 BUILD_GUIDE.md
+
+> **Project:** HoloJARVIS
+>
+> **Version:** 1.0
+>
+> **Document Type:** Complete Build Guide
+>
+> **Target Platform:** Raspberry Pi 5
+
+---
+
+# Table of Contents
+
+1. Introduction
+2. Build Requirements
+3. Hardware Components
+4. Required Tools
+5. Build Process
+6. Optical System Assembly
+7. Electronics Assembly
+8. Software Installation
+9. First Boot
+10. Calibration
+11. Functional Testing
+12. Troubleshooting
+13. Maintenance
+14. Upgrade Guide
+
+---
+
+# 1. Introduction
+
+This document explains how to assemble, configure, and test the complete HoloJARVIS system.
+
+By following this guide, you will build a fully functional AI-powered holographic assistant capable of voice interaction, holographic display, computer vision, and remote computer automation.
+
+---
+
+# 2. Build Requirements
+
+Before starting, make sure you have:
+
+- Raspberry Pi 5
+- Complete Bill of Materials (BOM)
+- 3D Printed Enclosure
+- Stable Wi-Fi Connection
+- USB Keyboard
+- USB Mouse
+- HDMI Monitor (temporary for setup)
+- MicroSD Card (32GB or larger)
+- Raspberry Pi OS Image
+
+Estimated build time:
+
+- Hardware Assembly: 2–4 hours
+- Software Installation: 1–2 hours
+- Configuration & Testing: 1–2 hours
+
+---
+
+# 3. Hardware Components
+
+Required components include:
+
+- Raspberry Pi 5 (8GB)
+- 2.4" TFT LCD Display
+- Raspberry Pi Camera
+- SPH0645 MEMS Microphone
+- PAM8403 Amplifier
+- Dual 3" 4Ω Speakers
+- 100mm Convex Magnifying Lens
+- 100mm Watch Glass
+- 45° Reflective Glass
+- Romoss 60000mAh Power Bank
+- USB-C Power Cable
+- USB On/Off Switch Cable
+- Breadboard
+- Jumper Wires
+- Ribbon Cables
+
+Refer to **HARDWARE_GUIDE.md** for detailed specifications.
+
+---
+
+# 4. Required Tools
+
+Recommended tools:
+
+- Phillips Screwdriver
+- Precision Screwdriver Set
+- Tweezers
+- Wire Cutter
+- Wire Stripper
+- Electrical Tape
+- Zip Ties
+- Multimeter
+- Hot Glue Gun (optional)
+- Double-Sided Mounting Tape
+
+---
+
+# 5. Build Process
+
+The recommended assembly order is:
+
+```
+3D Printed Enclosure
+
+↓
+
+Display Installation
+
+↓
+
+Camera Installation
+
+↓
+
+Microphone Installation
+
+↓
+
+Speaker Installation
+
+↓
+
+Amplifier Installation
+
+↓
+
+Raspberry Pi Installation
+
+↓
+
+Power Wiring
+
+↓
+
+Optical System Assembly
+
+↓
+
+Cable Management
+
+↓
+
+Software Installation
+
+↓
+
+Testing
+```
+
+---
+
+# 6. Optical System Assembly
+
+Install the optical components in the following order:
+
+```
+Top Cover
+
+↓
+
+45° Reflective Glass
+
+↓
+
+100mm Watch Glass
+
+↓
+
+100mm Convex Lens
+
+↓
+
+2.4" TFT LCD Display
+```
+
+Important:
+
+- Keep all optical surfaces clean.
+- Avoid fingerprints on the glass.
+- Ensure the reflective glass is fixed at approximately 45°.
+- Verify the display is centered under the lens.
+
+---
+
+# 7. Electronics Assembly
+
+## Step 1 – Install Raspberry Pi
+
+Secure the Raspberry Pi to the mounting points inside the enclosure.
+
+Do not overtighten screws.
+
+---
+
+## Step 2 – Install TFT Display
+
+Connect the TFT display using the appropriate interface.
+
+Mount the display facing upward toward the optical system.
+
+---
+
+## Step 3 – Install Camera
+
+Attach the Raspberry Pi Camera using the CSI ribbon cable.
+
+Route the ribbon cable carefully to avoid sharp bends.
+
+---
+
+## Step 4 – Install MEMS Microphone
+
+Connect the SPH0645 microphone to the Raspberry Pi GPIO.
+
+Verify all I2S connections before powering on.
+
+---
+
+## Step 5 – Install Amplifier
+
+Mount the PAM8403 amplifier.
+
+Connect:
+
+- Power
+- Audio Input
+- Left Speaker
+- Right Speaker
+
+---
+
+## Step 6 – Install Speakers
+
+Secure both speakers.
+
+Verify correct polarity before final assembly.
+
+---
+
+## Step 7 – Power Connections
+
+Connect:
+
+Romoss Power Bank
+
+↓
+
+USB On/Off Switch
+
+↓
+
+Baseus USB-C Cable
+
+↓
+
+Raspberry Pi
+
+Do not power on yet.
+
+---
+
+# 8. Software Installation
+
+## Install Raspberry Pi OS
+
+Flash Raspberry Pi OS onto the microSD card.
+
+Insert the card into the Raspberry Pi.
+
+Power on the system.
+
+---
+
+## Update the System
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+---
+
+## Install Git
+
+```bash
+sudo apt install git
+```
+
+---
+
+## Clone Repository
+
+```bash
+git clone https://github.com/USERNAME/HoloJARVIS.git
+```
+
+```bash
+cd HoloJARVIS
+```
+
+---
+
+## Install Python Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Configure Environment
+
+Create:
+
+```
+.env
+```
+
+Configure:
+
+- API Keys
+- Network Settings
+- Voice Settings
+- Camera Settings
+
+---
+
+## Start Backend
+
+```bash
+python main.py
+```
+
+or
+
+```bash
+uvicorn app:app
+```
+
+---
+
+# 9. First Boot
+
+After starting:
+
+Expected sequence:
+
+```
+Boot Logo
+
+↓
+
+System Check
+
+↓
+
+Network Connection
+
+↓
+
+Camera Check
+
+↓
+
+Microphone Check
+
+↓
+
+Speaker Check
+
+↓
+
+AI Initialization
+
+↓
+
+Hologram Display
+
+↓
+
+Ready
+```
+
+---
+
+# 10. Calibration
+
+## Display Calibration
+
+Adjust:
+
+- Brightness
+- Contrast
+- Rotation
+- Scaling
+
+---
+
+## Optical Calibration
+
+Move the lens slightly until:
+
+- Image is centered
+- Hologram is sharp
+- Reflection is clear
+
+---
+
+## Audio Calibration
+
+Test:
+
+Microphone sensitivity
+
+Speaker volume
+
+Noise filtering
+
+---
+
+## Camera Calibration
+
+Verify:
+
+- Focus
+- Exposure
+- Detection accuracy
+
+---
+
+# 11. Functional Testing
+
+Perform these tests before daily use.
+
+## Voice Test
+
+Say:
+
+```
+Hey Jarvis
+```
+
+Expected:
+
+Voice recognition activates.
+
+---
+
+## Display Test
+
+Verify:
+
+- Avatar appears
+- Animation is smooth
+- No flickering
+
+---
+
+## Camera Test
+
+Check:
+
+- Face Detection
+- QR Scanner
+- Image Capture
+
+---
+
+## Audio Test
+
+Verify:
+
+- Left speaker
+- Right speaker
+- Volume
+- Speech playback
+
+---
+
+## Automation Test
+
+Example command:
+
+```
+Open Calculator
+```
+
+Expected:
+
+The connected computer launches the application.
+
+---
+
+## Remote Access Test
+
+Connect from another device.
+
+Verify:
+
+- Dashboard loads
+- Commands execute
+- Responses are received
+
+---
+
+# 12. Troubleshooting
+
+## Raspberry Pi Does Not Boot
+
+- Verify power supply.
+- Check SD card.
+- Reflash Raspberry Pi OS.
+
+---
+
+## No Hologram
+
+- Check TFT display.
+- Clean optical glass.
+- Verify lens alignment.
+
+---
+
+## Camera Not Working
+
+- Verify CSI ribbon orientation.
+- Enable camera support.
+- Restart the system.
+
+---
+
+## No Audio
+
+- Check amplifier wiring.
+- Verify speaker polarity.
+- Test software audio settings.
+
+---
+
+## Microphone Not Detected
+
+- Verify I2S connections.
+- Check GPIO wiring.
+- Test recording device.
+
+---
+
+# 13. Maintenance
+
+Regular maintenance includes:
+
+- Cleaning optical glass
+- Removing dust from vents
+- Updating software
+- Checking cable connections
+- Backing up configuration files
+- Testing battery health
+
+---
+
+# 14. Upgrade Guide
+
+Future hardware upgrades may include:
+
+- Raspberry Pi AI HAT
+- Larger Display
+- Better Projection Optics
+- Stereo Camera
+- NVMe SSD
+- RGB Lighting
+- Gesture Sensor
+- Depth Camera
+- Thermal Camera
+- Additional Microphones
+- Better Speakers
+- Custom PCB
+
+Future software upgrades may include:
+
+- Offline AI Models
+- Plugin Marketplace
+- Multi-Agent AI
+- Smart Home Integration
+- Advanced Computer Vision
+- Distributed Processing
+- Enterprise Dashboard
+- Local Knowledge Base
+
+---
+
+# Build Completion Checklist
+
+Before closing the enclosure, confirm:
+
+- [ ] Raspberry Pi securely mounted
+- [ ] Display installed
+- [ ] Camera connected
+- [ ] Microphone connected
+- [ ] Amplifier connected
+- [ ] Speakers connected
+- [ ] Optical system aligned
+- [ ] Power wiring verified
+- [ ] Raspberry Pi OS installed
+- [ ] Dependencies installed
+- [ ] AI backend running
+- [ ] Voice engine working
+- [ ] Camera working
+- [ ] Audio working
+- [ ] Hologram visible
+- [ ] Remote dashboard accessible
+- [ ] Automation tested
+
+---
+
+# Build Summary
+
+After completing this guide, your HoloJARVIS system should function as a fully assembled AI-powered holographic assistant. The device will be capable of natural voice interaction, holographic visualization, computer vision, software generation, remote computer automation, and network-based management, providing a solid foundation for future hardware and software enhancements.
