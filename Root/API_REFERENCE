@@ -1,0 +1,815 @@
+# 🌐 API_REFERENCE.md
+
+> **Project:** HoloJARVIS
+>
+> **Version:** 1.0
+>
+> **Document Type:** REST API Documentation
+>
+> **Backend:** FastAPI
+>
+> **Protocol:** HTTP/HTTPS
+>
+> **Data Format:** JSON
+
+---
+
+# Table of Contents
+
+1. Introduction
+2. Base URL
+3. Authentication
+4. Response Format
+5. Error Responses
+6. System API
+7. AI Chat API
+8. Voice API
+9. Hologram API
+10. Camera API
+11. Automation API
+12. Programming API
+13. Memory API
+14. File Management API
+15. Remote Computer API
+16. Settings API
+17. Plugin API
+18. WebSocket API
+19. Status Codes
+20. Future APIs
+
+---
+
+# 1. Introduction
+
+The HoloJARVIS REST API allows external applications to communicate with the HoloJARVIS system.
+
+Supported clients include:
+
+- Desktop Application
+- Web Dashboard
+- Mobile Application
+- Third-Party Integrations
+- Future Plugins
+
+All communication is JSON based.
+
+---
+
+# 2. Base URL
+
+Development
+
+```
+
+http://localhost:8000/api/v1
+
+```
+
+Local Network
+
+```
+
+http://192.168.x.x:8000/api/v1
+
+```
+
+Production
+
+```
+
+https://your-domain.com/api/v1
+
+```
+
+---
+
+# 3. Authentication
+
+Protected endpoints require authentication.
+
+Example Header
+
+```http
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+Future versions may support:
+
+- JWT
+- OAuth 2.0
+- Multi-user Accounts
+
+---
+
+# 4. Response Format
+
+Successful Response
+
+```json
+{
+    "success": true,
+    "message": "Command executed successfully",
+    "data": {}
+}
+```
+
+Error Response
+
+```json
+{
+    "success": false,
+    "error": "Invalid request"
+}
+```
+
+---
+
+# 5. Error Responses
+
+| Status | Description |
+|---------|-------------|
+| 200 | Success |
+| 201 | Created |
+| 400 | Bad Request |
+| 401 | Unauthorized |
+| 403 | Forbidden |
+| 404 | Not Found |
+| 429 | Too Many Requests |
+| 500 | Internal Server Error |
+
+---
+
+# 6. System API
+
+## Get System Status
+
+```
+GET /system/status
+```
+
+Response
+
+```json
+{
+  "cpu": "18%",
+  "memory": "41%",
+  "temperature": "49°C",
+  "uptime": "2h 35m"
+}
+```
+
+---
+
+## Restart System
+
+```
+POST /system/restart
+```
+
+---
+
+## Shutdown System
+
+```
+POST /system/shutdown
+```
+
+---
+
+## Get System Information
+
+```
+GET /system/info
+```
+
+Returns
+
+- Raspberry Pi Model
+- OS Version
+- Python Version
+- Software Version
+- IP Address
+
+---
+
+# 7. AI Chat API
+
+## Chat with AI
+
+```
+POST /chat
+```
+
+Request
+
+```json
+{
+  "message":"Create a portfolio website."
+}
+```
+
+Response
+
+```json
+{
+  "reply":"Sure! I'll generate a modern portfolio website..."
+}
+```
+
+---
+
+## Conversation History
+
+```
+GET /chat/history
+```
+
+---
+
+## Clear Conversation
+
+```
+DELETE /chat/history
+```
+
+---
+
+# 8. Voice API
+
+## Speech To Text
+
+```
+POST /voice/stt
+```
+
+---
+
+## Text To Speech
+
+```
+POST /voice/tts
+```
+
+Request
+
+```json
+{
+  "text":"Hello, I am HoloJARVIS."
+}
+```
+
+---
+
+## Wake Word Status
+
+```
+GET /voice/status
+```
+
+---
+
+# 9. Hologram API
+
+## Display Avatar
+
+```
+POST /hologram/avatar
+```
+
+Request
+
+```json
+{
+    "mode":"avatar"
+}
+```
+
+---
+
+## Display Energy Core
+
+```
+POST /hologram/energy
+```
+
+---
+
+## Change Avatar
+
+```
+POST /hologram/avatar/change
+```
+
+---
+
+## Stop Rendering
+
+```
+POST /hologram/stop
+```
+
+---
+
+# 10. Camera API
+
+## Capture Image
+
+```
+POST /camera/capture
+```
+
+---
+
+## Start Video Stream
+
+```
+POST /camera/start
+```
+
+---
+
+## Stop Camera
+
+```
+POST /camera/stop
+```
+
+---
+
+## Face Detection
+
+```
+POST /camera/face
+```
+
+---
+
+## QR Scanner
+
+```
+POST /camera/qr
+```
+
+---
+
+# 11. Automation API
+
+## Open Application
+
+```
+POST /automation/open
+```
+
+Example
+
+```json
+{
+  "application":"Blender"
+}
+```
+
+---
+
+## Close Application
+
+```
+POST /automation/close
+```
+
+---
+
+## Keyboard Automation
+
+```
+POST /automation/keyboard
+```
+
+---
+
+## Mouse Automation
+
+```
+POST /automation/mouse
+```
+
+---
+
+## Screenshot
+
+```
+POST /automation/screenshot
+```
+
+---
+
+## Screen Recording
+
+```
+POST /automation/record
+```
+
+---
+
+# 12. Programming API
+
+## Generate Code
+
+```
+POST /programming/generate
+```
+
+Example
+
+```json
+{
+    "language":"Python",
+    "prompt":"Create a REST API."
+}
+```
+
+---
+
+## Explain Code
+
+```
+POST /programming/explain
+```
+
+---
+
+## Debug Code
+
+```
+POST /programming/debug
+```
+
+---
+
+## Optimize Code
+
+```
+POST /programming/optimize
+```
+
+---
+
+# 13. Memory API
+
+## Save Memory
+
+```
+POST /memory/save
+```
+
+---
+
+## Retrieve Memory
+
+```
+GET /memory
+```
+
+---
+
+## Delete Memory
+
+```
+DELETE /memory
+```
+
+---
+
+# 14. File Management API
+
+## List Files
+
+```
+GET /files
+```
+
+---
+
+## Upload File
+
+```
+POST /files/upload
+```
+
+---
+
+## Download File
+
+```
+GET /files/download
+```
+
+---
+
+## Delete File
+
+```
+DELETE /files/delete
+```
+
+---
+
+## Search Files
+
+```
+POST /files/search
+```
+
+---
+
+# 15. Remote Computer API
+
+## List Connected Computers
+
+```
+GET /computers
+```
+
+---
+
+## Connect Computer
+
+```
+POST /computers/connect
+```
+
+---
+
+## Disconnect Computer
+
+```
+POST /computers/disconnect
+```
+
+---
+
+## Execute Command
+
+```
+POST /computers/execute
+```
+
+Example
+
+```json
+{
+    "computer":"Office-PC",
+    "command":"Open Visual Studio Code"
+}
+```
+
+---
+
+## Get Computer Status
+
+```
+GET /computers/status
+```
+
+---
+
+# 16. Settings API
+
+## Get Settings
+
+```
+GET /settings
+```
+
+---
+
+## Update Settings
+
+```
+POST /settings
+```
+
+---
+
+## Reset Settings
+
+```
+POST /settings/reset
+```
+
+---
+
+# 17. Plugin API
+
+## Installed Plugins
+
+```
+GET /plugins
+```
+
+---
+
+## Install Plugin
+
+```
+POST /plugins/install
+```
+
+---
+
+## Remove Plugin
+
+```
+DELETE /plugins/remove
+```
+
+---
+
+## Enable Plugin
+
+```
+POST /plugins/enable
+```
+
+---
+
+## Disable Plugin
+
+```
+POST /plugins/disable
+```
+
+---
+
+# 18. WebSocket API
+
+Real-time communication.
+
+```
+ws://localhost:8000/ws
+```
+
+Events
+
+- Live Chat
+- Voice Streaming
+- Camera Stream
+- System Logs
+- Notifications
+- Computer Status
+- AI Status
+
+---
+
+# 19. Status Codes
+
+| Code | Meaning |
+|------|---------|
+| 200 | OK |
+| 201 | Created |
+| 204 | No Content |
+| 400 | Bad Request |
+| 401 | Unauthorized |
+| 403 | Forbidden |
+| 404 | Not Found |
+| 409 | Conflict |
+| 429 | Too Many Requests |
+| 500 | Internal Server Error |
+| 503 | Service Unavailable |
+
+---
+
+# 20. Future APIs
+
+Planned endpoints include:
+
+## AI Agent API
+
+```
+POST /agents/create
+GET /agents
+DELETE /agents
+```
+
+---
+
+## Workflow API
+
+```
+POST /workflow/create
+POST /workflow/run
+GET /workflow/history
+```
+
+---
+
+## Research API
+
+```
+POST /research/search
+POST /research/summarize
+```
+
+---
+
+## Smart Home API
+
+```
+POST /iot/device
+POST /iot/light
+POST /iot/fan
+POST /iot/sensor
+```
+
+---
+
+## AI Vision API
+
+```
+POST /vision/object
+POST /vision/text
+POST /vision/analyze
+```
+
+---
+
+## Software Builder API
+
+```
+POST /builder/website
+POST /builder/mobile
+POST /builder/desktop
+POST /builder/api
+```
+
+---
+
+# API Versioning
+
+All endpoints are versioned.
+
+Example:
+
+```
+/api/v1/chat
+```
+
+Future releases:
+
+```
+/api/v2/
+/api/v3/
+```
+
+Backward compatibility will be maintained whenever possible.
+
+---
+
+# API Architecture
+
+```
+                   Client
+
+         Web • Desktop • Mobile
+
+                    │
+
+                HTTPS / WSS
+
+                    │
+
+          FastAPI API Gateway
+
+                    │
+
+ ┌───────────────────────────────────────┐
+ │                                       │
+ │ AI Core Service                       │
+ │ Voice Service                         │
+ │ Camera Service                        │
+ │ Hologram Service                      │
+ │ Automation Service                    │
+ │ Programming Service                   │
+ │ Memory Service                        │
+ │ Plugin Service                        │
+ │ Remote Computer Service               │
+ │ File Service                          │
+ │ Settings Service                      │
+ │ Security Service                      │
+ │                                       │
+ └───────────────────────────────────────┘
+
+                    │
+
+            Raspberry Pi Hardware
+
+                    │
+
+        Connected Computers & Devices
+```
+
+---
+
+# API Summary
+
+The HoloJARVIS API is designed around a modular, versioned REST architecture that enables secure communication between the physical HoloJARVIS device and external clients. It provides endpoints for AI conversations, voice interaction, holographic rendering, computer vision, automation, remote computer management, file operations, plugins, and system administration, while remaining extensible for future capabilities such as AI agents, workflow automation, and IoT integration.
