@@ -1,0 +1,571 @@
+# 🔧 HARDWARE_GUIDE.md
+
+> **Project:** HoloJARVIS
+>
+> **Version:** 1.0
+>
+> **Platform:** Raspberry Pi 5
+>
+> **Document Type:** Hardware Documentation
+
+---
+
+# Table of Contents
+
+1. Introduction
+2. Hardware Overview
+3. Hardware Specifications
+4. Bill of Materials
+5. Internal Hardware Layout
+6. Optical Hologram System
+7. Raspberry Pi 5
+8. Display System
+9. Camera System
+10. Audio System
+11. Power System
+12. Wiring Guide
+13. Cooling System
+14. Enclosure Design
+15. Assembly Instructions
+16. Testing Procedure
+17. Troubleshooting
+18. Future Hardware Upgrades
+
+---
+
+# 1. Introduction
+
+The HoloJARVIS hardware platform is designed as a compact AI-powered holographic desktop assistant built around the Raspberry Pi 5.
+
+The hardware combines:
+
+- Artificial Intelligence
+- Holographic Projection
+- Computer Vision
+- Voice Recognition
+- Audio Playback
+- Remote Computer Control
+- Portable Power
+
+into a single enclosure.
+
+---
+
+# 2. Hardware Overview
+
+The complete system consists of five major sections.
+
+```
++--------------------------------------+
+
+Holographic Display Module
+
+Optical Projection Module
+
+Electronics Module
+
+Audio Module
+
+Power Module
+
++--------------------------------------+
+```
+
+---
+
+# 3. Hardware Specifications
+
+| Specification | Value |
+|--------------|-------|
+| Processor | Raspberry Pi 5 (8GB) |
+| Display | 2.4" TFT LCD |
+| Camera | 5MP Raspberry Pi Camera |
+| Audio Input | SPH0645 MEMS I2S Microphone |
+| Audio Output | PAM8403 + Dual 4Ω Speakers |
+| Projection Lens | 100mm Convex Magnifying Lens |
+| Optical Glass | 100mm Watch Glass |
+| Reflection | 45° Acrylic/Glass Reflector |
+| Power | Romoss 60000mAh Power Bank |
+| Charging | LDNIO 100W GaN Charger |
+| Operating Voltage | 5V USB-C |
+
+---
+
+# 4. Bill of Materials (BOM)
+
+| Part | Quantity |
+|-------|----------|
+| Raspberry Pi 5 (8GB) | 1 |
+| 2.4" TFT LCD | 1 |
+| Raspberry Pi Camera | 1 |
+| SPH0645 MEMS Microphone | 1 |
+| PAM8403 Stereo Amplifier | 1 |
+| 3" 4Ω 5W Speakers | 2 |
+| Convex Magnifying Lens (100mm) | 1 |
+| Watch Glass (100mm) | 1 |
+| 45° Reflective Glass | 1 |
+| Breadboard | 1 |
+| Ribbon Cable | 2 |
+| Jumper Wires | Multiple |
+| Romoss 60000mAh Power Bank | 1 |
+| USB-C Cable | 1 |
+| USB On/Off Switch Cable | 1 |
+| LDNIO Q408 100W Charger | 1 |
+
+---
+
+# 5. Internal Hardware Layout
+
+```
+                    TOP
+
+      45° Reflective Glass
+
+                │
+
+        100mm Watch Glass
+
+                │
+
+      100mm Convex Lens
+
+                │
+
+          TFT LCD Display
+
+──────────────────────────────────
+
+ Camera      Microphone
+
+──────────────────────────────────
+
+ Raspberry Pi 5
+
+ Breadboard
+
+ Amplifier
+
+ Ribbon Cables
+
+──────────────────────────────────
+
+ Dual Speakers
+
+──────────────────────────────────
+
+ Power Section
+
+──────────────────────────────────
+
+               Bottom
+```
+
+---
+
+# 6. Optical Hologram System
+
+The holographic display uses a Pepper's Ghost-inspired optical projection system.
+
+### Optical Stack
+
+```
+45° Reflective Glass
+
+↓
+
+100mm Watch Glass
+
+↓
+
+100mm Convex Lens
+
+↓
+
+2.4" TFT LCD
+```
+
+### Working Principle
+
+1. LCD displays transparent AI animation.
+2. Convex lens enlarges the image.
+3. Watch glass improves optical clarity.
+4. Reflective glass reflects the image.
+5. User sees a floating holographic assistant.
+
+---
+
+# 7. Raspberry Pi 5
+
+## Specifications
+
+Processor
+
+Broadcom BCM2712
+
+CPU
+
+Quad-Core ARM Cortex-A76
+
+RAM
+
+8GB LPDDR4X
+
+Connectivity
+
+Wi-Fi
+
+Bluetooth
+
+Ethernet
+
+USB 3.0
+
+USB-C Power
+
+GPIO
+
+40 Pins
+
+Purpose
+
+- Main AI Computer
+- Voice Processing
+- Camera Processing
+- Computer Automation
+- Display Rendering
+- Networking
+
+---
+
+# 8. Display System
+
+Component
+
+2.4" TFT LCD
+
+Purpose
+
+Display:
+
+- AI Avatar
+- UI
+- Animation
+- HUD
+- Status Information
+
+The display is mounted upside down beneath the optical assembly.
+
+---
+
+# 9. Camera System
+
+Camera
+
+5MP Raspberry Pi Camera
+
+Functions
+
+- Face Detection
+- Face Recognition
+- QR Scanner
+- Object Detection
+- Image Capture
+- Video Capture
+
+The camera is positioned on the front of the enclosure.
+
+---
+
+# 10. Audio System
+
+## Input
+
+SPH0645 MEMS I2S Microphone
+
+Purpose
+
+- Wake Word
+- Speech Recognition
+- Voice Commands
+
+## Output
+
+PAM8403 Stereo Amplifier
+
+↓
+
+Dual Speakers
+
+Purpose
+
+- AI Voice
+- Music
+- Notifications
+- Alerts
+
+---
+
+# 11. Power System
+
+## Power Source
+
+Romoss 60000mAh Power Bank
+
+↓
+
+USB On/Off Switch
+
+↓
+
+Baseus USB-C Cable
+
+↓
+
+Raspberry Pi
+
+### Charging
+
+LDNIO Q408 100W GaN Charger
+
+---
+
+# 12. Wiring Guide
+
+## Raspberry Pi GPIO Connections
+
+### MEMS Microphone
+
+| MEMS Pin | Raspberry Pi GPIO |
+|-----------|-------------------|
+| VIN | 3.3V |
+| GND | GND |
+| BCLK | GPIO 18 |
+| LRCLK | GPIO 19 |
+| DOUT | GPIO 20 |
+
+---
+
+### Camera
+
+CSI Ribbon Cable
+
+↓
+
+Camera Connector
+
+---
+
+### Display
+
+SPI Interface
+
+↓
+
+GPIO Header
+
+---
+
+### Amplifier
+
+| Amplifier Pin | Raspberry Pi |
+|---------------|--------------|
+| VCC | 5V |
+| GND | GND |
+| Audio Input | DAC / Audio Output |
+
+---
+
+# 13. Cooling System
+
+Cooling is important because Raspberry Pi 5 generates heat during AI processing.
+
+Recommended
+
+- Aluminum Heatsink
+- Active Cooling Fan
+- Air Vents
+
+The enclosure includes ventilation slots for airflow.
+
+---
+
+# 14. Enclosure Design
+
+The enclosure was designed in Blender.
+
+Design Goals
+
+- Compact
+- Futuristic
+- Easy Assembly
+- Hidden Wiring
+- Modular
+- Service Friendly
+
+Internal compartments separate the optics, electronics, and power sections.
+
+---
+
+# 15. Assembly Instructions
+
+### Step 1
+
+Install Raspberry Pi.
+
+---
+
+### Step 2
+
+Install TFT Display.
+
+---
+
+### Step 3
+
+Connect Camera.
+
+---
+
+### Step 4
+
+Install MEMS Microphone.
+
+---
+
+### Step 5
+
+Install Amplifier.
+
+---
+
+### Step 6
+
+Install Speakers.
+
+---
+
+### Step 7
+
+Connect Ribbon Cables.
+
+---
+
+### Step 8
+
+Install Convex Lens.
+
+---
+
+### Step 9
+
+Install Watch Glass.
+
+---
+
+### Step 10
+
+Install 45° Reflective Glass.
+
+---
+
+### Step 11
+
+Connect Power Bank.
+
+---
+
+### Step 12
+
+Power On.
+
+---
+
+# 16. Hardware Testing
+
+Before software installation verify:
+
+✅ Raspberry Pi boots.
+
+✅ Display works.
+
+✅ Camera detected.
+
+✅ Microphone detected.
+
+✅ Speakers output audio.
+
+✅ Wi-Fi connects.
+
+✅ Bluetooth works.
+
+✅ Cooling fan spins.
+
+---
+
+# 17. Troubleshooting
+
+## Display Black
+
+- Check SPI cable.
+- Verify power.
+- Check display driver.
+
+---
+
+## Camera Not Detected
+
+- Verify CSI ribbon.
+- Enable camera interface.
+- Check ribbon orientation.
+
+---
+
+## No Audio
+
+- Verify amplifier power.
+- Check speaker polarity.
+- Check software audio settings.
+
+---
+
+## Microphone Not Working
+
+- Verify I2S wiring.
+- Enable I2S.
+- Test recording.
+
+---
+
+## Raspberry Pi Overheating
+
+- Verify heatsink.
+- Check fan.
+- Improve airflow.
+
+---
+
+# 18. Future Hardware Upgrades
+
+Future versions may include:
+
+- Raspberry Pi AI HAT
+- Infrared Camera
+- Stereo Camera
+- OLED Status Display
+- MEMS Speaker Array
+- Better Holographic Optics
+- Li-Ion Battery Management System
+- USB Hub
+- NVMe SSD Storage
+- RGB Ambient Lighting
+- Gesture Sensor
+- Time-of-Flight Depth Sensor
+- Thermal Camera
+- GPS Module
+- Environmental Sensors
+
+---
+
+# Hardware Summary
+
+The HoloJARVIS hardware platform combines Raspberry Pi 5, holographic optics, voice input, camera vision, stereo audio, and portable power into a compact modular enclosure. Every component has been selected to support an AI-powered holographic assistant that is portable, serviceable, and ready for future hardware expansion while maintaining a clean internal architecture.
